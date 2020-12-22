@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 color;
+
+vec3 hueShiftGray(vec3 desiredCol, float grayscale) {
+	float a = 2. * grayscale - 1.;
+	float b = 2. * grayscale - a;
+	return b * desiredCol + a;
+}
+
+float RGBtoGray(vec3 col) {
+	return (col.r + col.g + col.b) / 3.;
+}
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV);
+	COLOR.rgb = hueShiftGray(color.rgb, RGBtoGray(COLOR.rgb));
+} "
+
+[resource]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/color = Color( 0.0941176, 0.137255, 0.768627, 1 )
