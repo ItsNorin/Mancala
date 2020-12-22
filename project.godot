@@ -12,10 +12,16 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "CircleLayout",
 "language": "GDScript",
-"path": "res://Scripts/Shape/CircleLayout.gd"
+"path": "res://Scripts/Shape/CircleLayout/CircleLayout.gd"
+}, {
+"base": "CircleLayout",
+"class": "SunflowerSeedLayout",
+"language": "GDScript",
+"path": "res://Scripts/Shape/SunflowerSeedLayout/SunflowerSeedLayout.gd"
 } ]
 _global_script_class_icons={
-"CircleLayout": ""
+"CircleLayout": "",
+"SunflowerSeedLayout": ""
 }
 
 [application]

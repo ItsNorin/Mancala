@@ -50,20 +50,30 @@ func add_child_below_node(node:Node, child_node:Node, legible_unique_name:bool =
 	updateChildPositions()
 	pass
 
+# Moves child node to new position amongst children then updates all child positions
+func move_child(node:Node, to_position:int):
+	.move_child(node, to_position)
+	updateChildPositions()
+	pass
+
 # Removes child then updates all child positions
 func remove_child(node:Node):
 	.remove_child(node)
 	updateChildPositions()
 	pass
 
-# Arranges all children that are Node2D's in a circle
-# This is done automatically but can be done manually if needed
-func updateChildPositions():
-	# gathers all Node2D children for arranging
+func getAllArrangableChildren() -> Array:
 	var children = []
 	for c in self.get_children():
 		if c is Node2D:
 			children.push_back(c)
+	return children
+
+# Arranges all children that are Node2D's in a circle
+# This is done automatically but can be done manually if needed
+func updateChildPositions():
+	# gathers all Node2D children for arranging
+	var children = getAllArrangableChildren()
 	
 	var cc:int = children.size()
 	
