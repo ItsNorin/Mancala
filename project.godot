@@ -24,6 +24,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Layout/LineLayout/LineLayout.gd"
 }, {
+"base": "Node2D",
+"class": "Piece",
+"language": "GDScript",
+"path": "res://Scripts/Piece/Piece.gd"
+}, {
+"base": "Node2D",
+"class": "PieceVisible",
+"language": "GDScript",
+"path": "res://Scripts/Piece/PieceVisible.gd"
+}, {
 "base": "CircleLayout",
 "class": "SunflowerSeedLayout",
 "language": "GDScript",
@@ -33,6 +43,8 @@ _global_script_class_icons={
 "CircleLayout": "",
 "Layout": "",
 "LineLayout": "",
+"Piece": "",
+"PieceVisible": "",
 "SunflowerSeedLayout": ""
 }
 
