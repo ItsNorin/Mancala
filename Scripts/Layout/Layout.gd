@@ -43,6 +43,12 @@ func remove_child(node:Node):
 	.remove_child(node)
 	updateChildPositions()
 	pass
+	
+func remove_all_children():
+	for c in self.get_children():
+		.remove_child(c)
+		c.queue_free()
+	pass
 
 func getAllArrangableChildren() -> Array:
 	var children = []
