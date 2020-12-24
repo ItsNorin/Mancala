@@ -4,32 +4,37 @@ extends Node2D
 class_name PlayerRow
 
 export (int, 1, 12) var pitCount = 6 setget setPitCounts
-export (float, 0, 256) var spacing = 128 setget setLayoutSpacing
+export (float, 0, 256) var pitRadius = 64 setget setPitRadius
 
 var layout:LineLayoutCentered = null
 var PIT = preload("res://Scripts/Board/Pit/Pit.tscn")
 
 func length() -> float:
-	return layout.length() + spacing
+	return layout.length() + 2*pitRadius
 
-func setLayoutSpacing(s:float):
-	spacing = s
-	if layout != null:
-		layout.setSpacing(s)
+func setPitRadius(r:float):
+	pitRadius = r
+	regeneratePits(pitCount, pitRadius)
 	pass
-
+	
 func setPitCounts(pc:int):
 	pitCount = pc
-	
+	regeneratePits(pitCount, pitRadius)
+	pass
+
+func regeneratePits(pc:int, pr:float):
 	if layout != null:
 		# create needed pits
 		var pits = []
 		pits.resize(pitCount)
 		for i in pitCount:
-			pits[i] = PIT.instance()
+			var p:Pit = PIT.instance()
+			p.setRadius(pitRadius)
+			pits[i] = p
 		
 		# update layout
 		layout.remove_all_children()
+		layout.setSpacing(2*pitRadius)
 		layout.add_child_many(pits)
 	pass
 	
@@ -39,7 +44,7 @@ func getPit(i:int) -> Pit:
 func _init():
 	layout = LineLayoutCentered.new()
 	add_child(layout)
-	layout.setSpacing(spacing)
+	layout.setSpacing(2*pitRadius)
 	setPitCounts(pitCount)
 
 func _exit_tree():

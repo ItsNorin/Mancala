@@ -4,4 +4,3 @@
 
 [node name="PlayerRow" type="Node2D"]
 script = ExtResource( 1 )
-spacing = 64.0

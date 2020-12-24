@@ -7,11 +7,13 @@
 [node name="Board" type="Node2D"]
 position = Vector2( 512, 300 )
 script = ExtResource( 1 )
+sideCount = 3
 pitCount = 5
+pitRadius = 17.73
 
 [node name="CircleLayout" type="Node2D" parent="."]
 script = ExtResource( 2 )
-radius = 220.221
+radius = 61.4185
 
 [node name="PieceFactory" type="Node" parent="."]
 script = ExtResource( 3 )

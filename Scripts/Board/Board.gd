@@ -5,6 +5,8 @@
 #  - Board layout and setup
 #  - Piece positions and movement animations
 #
+# TODO: 
+# Piece controller as child
 
 tool
 extends Node2D
@@ -17,6 +19,7 @@ var ROW = preload("res://Scripts/Board/PlayerRow/PlayerRow.tscn")
 export (int, 2, 8) var sideCount = 5 setget setSides
 export (int, 1, 16) var pitCount = 7 setget setPitCount
 export (int, 0, 24) var startingPieces = 4 setget setStartingPieces
+export (float, 1, 128) var pitRadius = 32 setget setPitRadius
 
 export (bool) var update = false setget setUpdate
 
@@ -30,6 +33,11 @@ func setStartingPieces(p:int):
 	setUpdate()
 	pass
 
+func setPitRadius(r:float):
+	pitRadius = r
+	setUpdate()
+	pass
+	
 # warning-ignore:unused_argument
 func setUpdate(b:bool = false):
 	setSides(sideCount)
@@ -48,15 +56,19 @@ func setSides(s:int):
 	
 	if layout != null:
 		# create needed pits
+		var theta:float = 2*PI/sideCount
+		
 		var sides = []
 		sides.resize(sideCount)
 		for i in sideCount:
 			var r:PlayerRow = makeNewRow()
-			r.rotate(2*PI*i/sideCount + PI/2)
+			r.setPitRadius(pitRadius)
+			r.rotate(theta*i + PI/2)
 			sides[i] = r
 		
 		
 		var sideLength:float = (sides.front() as PlayerRow).length()
+		sideLength += 2*(pitRadius/cos(theta/2) - pitRadius)
 		var layoutRadius:float = sideLength / (2 * tan(PI / sideCount))
 		
 		# update layout
