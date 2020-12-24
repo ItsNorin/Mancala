@@ -24,10 +24,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Layout/LineLayout/LineLayout.gd"
 }, {
+"base": "LineLayout",
+"class": "LineLayoutCentered",
+"language": "GDScript",
+"path": "res://Scripts/Layout/LineLayoutCentered/LineLayoutCentered.gd"
+}, {
 "base": "Node2D",
 "class": "Piece",
 "language": "GDScript",
 "path": "res://Scripts/Piece/Piece.gd"
+}, {
+"base": "Node",
+"class": "PieceFactory",
+"language": "GDScript",
+"path": "res://Scripts/Piece/PieceFactory.gd"
 }, {
 "base": "Node2D",
 "class": "PieceVisible",
@@ -39,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Board/Pit/Pit.gd"
 }, {
+"base": "Node2D",
+"class": "PlayerRow",
+"language": "GDScript",
+"path": "res://Scripts/Board/PlayerRow/PlayerRow.gd"
+}, {
 "base": "CircleLayout",
 "class": "SunflowerSeedLayout",
 "language": "GDScript",
@@ -48,9 +63,12 @@ _global_script_class_icons={
 "CircleLayout": "",
 "Layout": "",
 "LineLayout": "",
+"LineLayoutCentered": "",
 "Piece": "",
+"PieceFactory": "",
 "PieceVisible": "",
 "Pit": "",
+"PlayerRow": "",
 "SunflowerSeedLayout": ""
 }
 
