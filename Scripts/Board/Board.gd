@@ -12,7 +12,7 @@ tool
 extends Node2D
 
 onready var layout = $CircleLayout
-onready var pieceFactory = $PieceFactory
+onready var pieceManager = $PieceManager
 
 var ROW = preload("res://Scripts/Board/PlayerRow/PlayerRow.tscn")
 
@@ -20,8 +20,14 @@ export (int, 2, 8) var sideCount = 5 setget setSides
 export (int, 1, 16) var pitCount = 7 setget setPitCount
 export (int, 0, 24) var startingPieces = 4 setget setStartingPieces
 export (float, 1, 128) var pitRadius = 32 setget setPitRadius
+export (float, 1, 64) var pieceRadius = 8 setget setPieceRadius
 
 export (bool) var update = false setget setUpdate
+
+func setPieceRadius(r:float):
+	pieceRadius = r
+	setUpdate()
+	pass
 
 func setPitCount(p:int):
 	pitCount = p
@@ -48,13 +54,16 @@ func makeNewRow() -> PlayerRow:
 	r.setPitCounts(pitCount)
 	for i in pitCount:
 		var p:Pit = r.getPit(i)
-		p.addPieces(pieceFactory.getNewPieces(startingPieces))
+		p.addPieces(pieceManager.getNewPieces(pieceRadius, startingPieces))
 	return r
 
 func setSides(s:int):
 	sideCount = s
 	
 	if layout != null:
+		# clear all pieces
+		pieceManager.remove_all_children()
+		
 		# create needed pits
 		var theta:float = 2*PI/sideCount
 		
@@ -75,6 +84,8 @@ func setSides(s:int):
 		layout.remove_all_children()
 		layout.setRadius(layoutRadius)
 		layout.add_child_many(sides)
+		
+		
 	pass
 
 func _ready():

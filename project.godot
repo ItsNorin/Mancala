@@ -34,10 +34,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Piece/Piece.gd"
 }, {
-"base": "Node",
-"class": "PieceFactory",
+"base": "Node2D",
+"class": "PieceManager",
 "language": "GDScript",
-"path": "res://Scripts/Piece/PieceFactory.gd"
+"path": "res://Scripts/Board/PieceManager.gd"
 }, {
 "base": "Node2D",
 "class": "PieceVisible",
@@ -65,7 +65,7 @@ _global_script_class_icons={
 "LineLayout": "",
 "LineLayoutCentered": "",
 "Piece": "",
-"PieceFactory": "",
+"PieceManager": "",
 "PieceVisible": "",
 "Pit": "",
 "PlayerRow": "",

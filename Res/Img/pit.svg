@@ -1,88 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="512"
-   height="512"
-   viewBox="0 0 135.46666 135.46667"
-   version="1.1"
-   id="svg8"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="pit.svg">
-  <defs
-     id="defs2">
-    <linearGradient
-       inkscape:collect="always"
-       id="grad">
-      <stop
-         style="stop-color:#ffe6d5;stop-opacity:0"
-         offset="0"
-         id="stop827" />
-      <stop
-         style="stop-color:#784421;stop-opacity:0.502"
-         offset="1"
-         id="stop829" />
-    </linearGradient>
-    <radialGradient
-       inkscape:collect="always"
-       xlink:href="#grad"
-       id="radialGradient833"
-       cx="67.733337"
-       cy="229.26666"
-       fx="67.733337"
-       fy="229.26666"
-       r="67.60041"
-       gradientUnits="userSpaceOnUse" />
-  </defs>
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="339.61467"
-     inkscape:cy="236.76012"
-     inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
-     showgrid="false"
-     units="px"
-     inkscape:window-width="1360"
-     inkscape:window-height="705"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1" />
-  <metadata
-     id="metadata5">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(0,-161.53332)">
-    <circle
-       style="opacity:1;fill:url(#radialGradient833);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.26584432;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="path817"
-       cx="67.733337"
-       cy="229.26666"
-       r="67.60041" />
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" viewBox="0 0 135.467 135.467">
+    <defs>
+        <linearGradient id="grad">
+            <stop offset="0" stop-color="#ffe6d5" stop-opacity="0"/>
+            <stop offset="1" stop-color="#784421" stop-opacity=".502"/>
+        </linearGradient>
+        <radialGradient id="radialGradient833" cx="67.733" cy="229.267" r="67.6" fx="67.733" fy="229.267" gradientUnits="userSpaceOnUse" xlink:href="#grad"/>
+    </defs>
+    <g transform="translate(0 -161.533)">
+        <circle cx="67.733" cy="229.267" r="67.6" fill="url(#radialGradient833)" fill-rule="evenodd"/>
+    </g>
 </svg>

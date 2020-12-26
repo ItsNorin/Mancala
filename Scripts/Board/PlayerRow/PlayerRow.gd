@@ -26,15 +26,15 @@ func regeneratePits(pc:int, pr:float):
 	if layout != null:
 		# create needed pits
 		var pits = []
-		pits.resize(pitCount)
-		for i in pitCount:
+		pits.resize(pc)
+		for i in pc:
 			var p:Pit = PIT.instance()
-			p.setRadius(pitRadius)
+			p.setRadius(pr)
 			pits[i] = p
 		
 		# update layout
 		layout.remove_all_children()
-		layout.setSpacing(2*pitRadius)
+		layout.setSpacing(2*pr)
 		layout.add_child_many(pits)
 	pass
 	
