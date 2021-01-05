@@ -11,6 +11,22 @@ class_name PieceManager
 
 # All possible colors of pieces
 export(Array, Color) var pieceColors
+export (float, 0.1, 5) var pieceMoveSpeed = 1
+
+
+var piecesToMove = []
+var pieces = []
+
+func updatePiecePositions():
+	for p in piecesToMove:
+		if p is Piece:
+			(p as Piece).animateMovement(-self.global_position, pieceMoveSpeed)
+	piecesToMove.clear()
+	pass
+
+func piecePositionChanged(p:Piece):
+	piecesToMove.append(p)
+	pass
 
 # Creates a new randomly colored piece
 # Must be freed manually!
@@ -20,12 +36,16 @@ func _getNewPiece(radius:float) -> Piece:
 	pV.rotate(rand_range(0, 2*PI))
 	pV.setRadius(radius)
 	add_child(pV)
-	return Piece.new(pV)
+	var p = Piece.new(pV)
+	pieces.append(p)
+	piecePositionChanged(p)
+	return p
 
 func remove_all_children():
 	for c in self.get_children():
 		.remove_child(c)
 		c.queue_free()
+	piecesToMove.clear()
 	pass
 
 func getNewPieces(radius:float, count:int = 1):

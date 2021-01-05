@@ -7,6 +7,7 @@
 [node name="Board" type="Node2D"]
 position = Vector2( 512, 300 )
 script = ExtResource( 1 )
+startingPieces = 1
 pitRadius = 23.438
 pieceRadius = 12.955
 

@@ -49,14 +49,6 @@ func setUpdate(b:bool = false):
 	setSides(sideCount)
 	pass
 
-func makeNewRow() -> PlayerRow:
-	var r:PlayerRow = ROW.instance()
-	r.setPitCounts(pitCount)
-	for i in pitCount:
-		var p:Pit = r.getPit(i)
-		p.addPieces(pieceManager.getNewPieces(pieceRadius, startingPieces))
-	return r
-
 func setSides(s:int):
 	sideCount = s
 	
@@ -70,9 +62,11 @@ func setSides(s:int):
 		var sides = []
 		sides.resize(sideCount)
 		for i in sideCount:
-			var r:PlayerRow = makeNewRow()
+			var r:PlayerRow = ROW.instance()
+			r.setPitCounts(pitCount)
 			r.setPitRadius(pitRadius)
 			r.rotate(theta*i + PI/2)
+			
 			sides[i] = r
 		
 		
@@ -85,9 +79,21 @@ func setSides(s:int):
 		layout.setRadius(layoutRadius)
 		layout.add_child_many(sides)
 		
-		
+		# add pieces to sides
+		for i in sideCount:
+			for j in pitCount:
+				var pcs = pieceManager.getNewPieces(pieceRadius, startingPieces)
+				var p:Pit = (sides[i] as PlayerRow).getPit(j)
+				p.addPieces(pcs)
+	
+	
+	
 	pass
 
 func _ready():
 	setSides(sideCount)
+	pass
+	
+func _process(delta):
+	pieceManager.updatePiecePositions()
 	pass

@@ -31,13 +31,10 @@ func setShaderParam(param:String, value):
 func _init():
 	sprite = Sprite.new()
 	sprite.texture = MARBLE_TEXTURE_1
-	sprite.material = MARBLE_MATERIAL
+	sprite.material = MARBLE_MATERIAL.duplicate()
 	add_child(sprite)
 	pass
 
 func _ready():
 	setPieceColor(pieceColor)
 	pass 
-	
-func _exit_tree():
-	sprite.queue_free()
