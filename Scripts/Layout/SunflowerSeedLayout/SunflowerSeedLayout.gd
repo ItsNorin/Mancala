@@ -47,8 +47,8 @@ func updateChildPositions():
 		for i in range(0,cc):
 			
 			var r:float = radius
-			if i < cc - bp:
-				r = radius * sqrt(i - 0.5) / sqrt(cc - (bp + 1) * 0.5)
+			if i <= cc - bp:
+				r = radius * sqrt(i + 0.5) / sqrt(cc - (bp + 1) * 0.5)
 			
 			var theta:float = 2*PI*i / pow(PHI,2)
 			

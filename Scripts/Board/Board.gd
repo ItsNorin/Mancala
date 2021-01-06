@@ -20,12 +20,18 @@ export (int, 2, 8) var sideCount = 5 setget setSides
 export (int, 1, 16) var pitCount = 7 setget setPitCount
 export (int, 0, 24) var startingPieces = 4 setget setStartingPieces
 export (float, 1, 128) var pitRadius = 32 setget setPitRadius
-export (float, 1, 64) var pieceRadius = 8 setget setPieceRadius
+export (float, 0.1, 1) var pieceScale = 0.3 setget setPieceScale
+export (float, 0.1, 1) var pitPileScalar = 0.4 setget setPitPileScalar
 
 export (bool) var update = false setget setUpdate
 
-func setPieceRadius(r:float):
-	pieceRadius = r
+func setPitPileScalar(s:float):
+	pitPileScalar = s
+	setUpdate()
+	pass
+
+func setPieceScale(s:float):
+	pieceScale = s
 	setUpdate()
 	pass
 
@@ -63,25 +69,28 @@ func setSides(s:int):
 		sides.resize(sideCount)
 		for i in sideCount:
 			var r:PlayerRow = ROW.instance()
-			r.setPitCounts(pitCount)
+			r.setPitCount(pitCount)
 			r.setPitRadius(pitRadius)
+			r.setPileScalar(pitPileScalar)
 			r.rotate(theta*i + PI/2)
 			
 			sides[i] = r
 		
 		
 		var sideLength:float = (sides.front() as PlayerRow).length()
-		sideLength += 2*(pitRadius/cos(theta/2) - pitRadius)
-		var layoutRadius:float = sideLength / (2 * tan(PI / sideCount))
+		sideLength += 2.0*(pitRadius/cos(theta/2.0) - pitRadius)
+		var layoutRadius:float = sideLength / (2.0 * tan(PI / sideCount))
 		
 		# update layout
 		layout.remove_all_children()
 		layout.setRadius(layoutRadius)
 		layout.add_child_many(sides)
 		
+		var pieceRadius = pitRadius * pieceScale
+		
 		# add pieces to sides
 		for i in sideCount:
-			for j in pitCount:
+			for j in range(1, pitCount):
 				var pcs = pieceManager.getNewPieces(pieceRadius, startingPieces)
 				var p:Pit = (sides[i] as PlayerRow).getPit(j)
 				p.addPieces(pcs)
@@ -95,5 +104,6 @@ func _ready():
 	pass
 	
 func _process(delta):
-	pieceManager.updatePiecePositions()
+	if pieceManager != null:
+		pieceManager.updatePiecePositions()
 	pass

@@ -78,6 +78,10 @@ config/name="MancalaV2"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/stretch/aspect="keep_width"
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
