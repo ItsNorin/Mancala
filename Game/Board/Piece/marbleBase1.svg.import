@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/marbleBase1.svg-a92935904d070d40337f6aa1bd761405.stex"
+path="res://.import/marbleBase1.svg-ebdb0b4cdf930371429eb682efd7c164.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Res/Img/marbleBase1.svg"
-dest_files=[ "res://.import/marbleBase1.svg-a92935904d070d40337f6aa1bd761405.stex" ]
+source_file="res://Game/Board/Piece/marbleBase1.svg"
+dest_files=[ "res://.import/marbleBase1.svg-ebdb0b4cdf930371429eb682efd7c164.stex" ]
 
 [params]
 

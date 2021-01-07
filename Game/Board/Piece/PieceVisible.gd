@@ -8,8 +8,8 @@ export (float, 1, 128) var radius setget setRadius
 
 var sprite:Sprite
 
-var MARBLE_TEXTURE_1 = preload("res://Res/Img/marbleBase1.svg")
-var MARBLE_MATERIAL = preload("res://Res/Material/PieceShader.tres") 
+var MARBLE_TEXTURE_1 = preload("res://Scripts/Board/Piece/marbleBase1.svg")
+var MARBLE_MATERIAL = preload("res://Scripts/Board/Piece/PieceShader.tres") 
 
 func setRadius(r:float):
 	radius = r

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pit.svg-367564a099b2a708040ea881a7cbd16e.stex"
+path="res://.import/pit.svg-9127fe00f55a3d67d8b8f2db65efe33e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Res/Img/pit.svg"
-dest_files=[ "res://.import/pit.svg-367564a099b2a708040ea881a7cbd16e.stex" ]
+source_file="res://Game/Board/PlayerRow/Pit/pit.svg"
+dest_files=[ "res://.import/pit.svg-9127fe00f55a3d67d8b8f2db65efe33e.stex" ]
 
 [params]
 
