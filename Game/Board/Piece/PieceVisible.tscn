@@ -2,7 +2,6 @@
 
 [ext_resource path="res://Game/Board/Piece/PieceVisible.gd" type="Script" id=3]
 
-
 [node name="PieceVisible" type="Node2D"]
 script = ExtResource( 3 )
 pieceColor = Color( 0.619608, 0.00392157, 0.00392157, 1 )

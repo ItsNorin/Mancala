@@ -8,7 +8,7 @@ export (float, 0, 256) var _pitRadius = 64 setget setPitRadius
 export (float, 0.1, 1) var _pileScalar = 0.4 setget setPileScalar
 
 var layout:LineLayoutCentered = null
-var PIT = preload("res://Scripts/Board/PlayerRow/Pit/Pit.tscn")
+var PIT = preload("Pit/Pit.tscn")
 
 var pits = []
 

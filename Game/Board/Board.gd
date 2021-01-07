@@ -14,7 +14,7 @@ extends Node2D
 onready var layout = $CircleLayout
 onready var pieceManager = $PieceManager
 
-var ROW = preload("res://Scripts/Board/PlayerRow/PlayerRow.tscn")
+var ROW = preload("PlayerRow/PlayerRow.tscn")
 
 export (int, 2, 12) var sideCount = 5 setget setSides
 export (int, 1, 16) var pitCount = 7 setget setPitCount
