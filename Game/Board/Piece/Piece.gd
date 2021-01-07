@@ -38,7 +38,3 @@ func animateMovement(posOffset:Vector2, speed:float = 1.0):
 			tween.start()
 	pass
 	
-
-func _exit_tree():
-	pieceVisible.queue_free()
-	tween.queue_free()

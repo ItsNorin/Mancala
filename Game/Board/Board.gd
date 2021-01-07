@@ -27,38 +27,47 @@ export (bool) var update = false setget setUpdate
 
 func setPitPileScalar(s:float):
 	pitPileScalar = s
-	setUpdate()
+	_rebuildBoard()
 	pass
 
 func setPieceScale(s:float):
 	pieceScale = s
-	setUpdate()
+	_rebuildBoard()
 	pass
 
 func setPitCount(p:int):
 	pitCount = p
-	setUpdate()
+	_rebuildBoard()
 	pass
 	
 func setStartingPieces(p:int):
 	startingPieces = p
-	setUpdate()
+	_rebuildBoard()
 	pass
 
 func setDesiredSize(s:float):
 	desiredSize = s
-	setUpdate()
+	_rebuildBoard()
 	pass
+	
+func setSides(s:int):
+	sideCount = s
+	_rebuildBoard()
+	pass
+	
 	
 # warning-ignore:unused_argument
 func setUpdate(b:bool = false):
-	setSides(sideCount)
+	_rebuildBoard()
 	pass
+
 
 
 func _createNewSides(pitRadius:float) -> Array:
 	# create needed pits
 	var theta:float = 2*PI/sideCount
+	
+	var prevRow:PlayerRow = null
 	
 	var sides = []
 	sides.resize(sideCount)
@@ -69,16 +78,26 @@ func _createNewSides(pitRadius:float) -> Array:
 		r.setPileScalar(pitPileScalar)
 		r.rotate(theta*i + PI/2)
 		
+		# link pits between first row and last row
+		if prevRow != null:
+			var np:Pit = r.pits.front()
+			(prevRow.pits.back() as Pit).linkNext(np)
+		prevRow = r
+		
 		sides[i] = r
+	
+	# link last row to first row
+	var np:Pit = (sides.front() as PlayerRow).pits.front()
+	var pp:Pit = (sides.back() as PlayerRow).pits.back()
+	pp.linkNext(np)
 	
 	return sides
 
-func setSides(s:int):
-	sideCount = s
-	
+
+func _rebuildBoard():
 	if layout != null:
 		# clear all pieces
-		pieceManager.remove_all_children()
+		pieceManager.free_all_children()
 		
 		# calulate pit radius to scale board to given size
 		var pitRadius:float = desiredSize / pitCount / 2
@@ -103,7 +122,7 @@ func setSides(s:int):
 		
 		layout.position = Vector2(0, vOffset)
 		# update layout
-		layout.remove_all_children()
+		layout.free_all_children()
 		layout.setRadius(layoutRadius)
 		layout.add_child_many(sidesArr)
 		
@@ -113,13 +132,28 @@ func setSides(s:int):
 		for i in sideCount:
 			for j in range(1, pitCount):
 				var pcs = pieceManager.getNewPieces(pieceRadius, startingPieces)
-				var p:Pit = (sidesArr[i] as PlayerRow).getPit(j)
+				var p:Pit = (sidesArr[i] as PlayerRow).pits[j]
 				p.addPieces(pcs)
-	
+	pass
+
+
+func connectPitClickSignals():
+	if !Engine.is_editor_hint():
+		var rows = layout.get_children()
+		for r in rows:
+			if r is PlayerRow:
+				for p in (r as PlayerRow).pits:
+					p.connect("pit_clicked", self, "_on_pit_click")
+	pass
+
+func _on_pit_click(pit):
+	if pit is Pit:
+		pieceManager.movePieces(pit)
 	pass
 
 func _ready():
-	setSides(sideCount)
+	_rebuildBoard()
+	connectPitClickSignals()
 	pass
 	
 func _process(delta):

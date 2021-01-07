@@ -47,6 +47,11 @@ func remove_child(node:Node):
 func remove_all_children():
 	for c in self.get_children():
 		.remove_child(c)
+	pass
+
+func free_all_children():
+	for c in self.get_children():
+		.remove_child(c)
 		c.queue_free()
 	pass
 

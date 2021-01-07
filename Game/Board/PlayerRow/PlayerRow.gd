@@ -10,7 +10,7 @@ export (float, 0.1, 1) var _pileScalar = 0.4 setget setPileScalar
 var layout:LineLayoutCentered = null
 var PIT = preload("Pit/Pit.tscn")
 
-var pits = []
+var pits:Array = []
 
 func length() -> float:
 	return layout.length() + 2*_pitRadius
@@ -32,8 +32,10 @@ func setPitCount(pc:int):
 
 func _regeneratePits():
 	if layout != null:
-		layout.remove_all_children()
+		layout.free_all_children()
 		layout.setSpacing(2*_pitRadius)
+		
+		var prevPit:Pit = null
 		
 		# create needed pits
 		pits.resize(_pitCount)
@@ -43,13 +45,15 @@ func _regeneratePits():
 			p.setRadius(_pitRadius)
 			p.setPileRadiusScalar(_pileScalar)
 			pits[i] = p
-		
+			
+			# link pits
+			if prevPit != null:
+				prevPit.linkNext(p)
+			prevPit = p
+			
 		# update layout
 		layout.add_child_many(pits)
 	pass
-
-func getPit(i:int) -> Pit:
-	return pits[i]
 
 func _init():
 	randomize()

@@ -17,6 +17,20 @@ export (float, 0.1, 5) var pieceMoveSpeed = 1
 var piecesToMove = []
 var pieces = []
 
+
+func movePieces(pit:Pit):
+	var toMove:Array = pit.withdrawAllPieces()
+	var pitPtr:Pit = pit.getNextPit()
+	for p in toMove:
+		if p is Piece:
+			pitPtr.addPiece(p)
+			for pToMv in pitPtr.getAllPieces():
+				if pToMv is Piece:
+					piecePositionChanged(pToMv)
+			pitPtr = pitPtr.getNextPit()
+			
+	pass
+
 func updatePiecePositions():
 	for p in piecesToMove:
 		if p is Piece:
@@ -41,7 +55,7 @@ func _getNewPiece(radius:float) -> Piece:
 	piecePositionChanged(p)
 	return p
 
-func remove_all_children():
+func free_all_children():
 	for c in self.get_children():
 		.remove_child(c)
 		c.queue_free()

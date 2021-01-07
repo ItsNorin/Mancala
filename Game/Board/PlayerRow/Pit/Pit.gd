@@ -9,10 +9,14 @@ extends Node2D
 
 class_name Pit
 
+signal pit_clicked(pit)
+
 export (float, 16, 256) var radius = 64 setget setRadius
 export (float, 0.1, 1) var pileRadiusScalar = 0.5 setget setPileRadiusScalar
 
 var layout:SunflowerSeedLayout
+
+var _nextPit:Pit = null
 
 func addPiece(p:Piece):
 	layout.add_child(p)
@@ -21,9 +25,13 @@ func addPiece(p:Piece):
 func addPieces(pa:Array):
 	layout.add_child_many(pa)
 	pass
-	
+
+func getAllPieces() -> Array:
+	return layout.get_children()
+
 func withdrawAllPieces() -> Array:
-	var pieces = layout.get_children()
+	var pieces = getAllPieces()
+	layout.remove_all_children()
 	return pieces
 
 func pieceCount() -> int:
@@ -47,6 +55,14 @@ func setPileRadiusScalar(s:float):
 	layout.setRadius(radius * s)
 	pass
 	
+func linkNext(np:Pit):
+	if np != null:
+		_nextPit = np
+	pass
+
+func getNextPit():
+	return _nextPit
+	
 func _init():
 	layout = SunflowerSeedLayout.new()
 	add_child(layout)
@@ -60,8 +76,8 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.pressed:
 			if event.global_position.distance_to(self.global_position) <= radius:
-				print("Mouse Click at: ", self.global_position)
 				get_tree().set_input_as_handled()
+				emit_signal("pit_clicked", self)
 	pass
 	
 func _exit_tree():
