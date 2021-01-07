@@ -33,7 +33,7 @@ func animateMovement(posOffset:Vector2, speed:float = 1.0):
 			tween.interpolate_property(
 				pieceVisible,"position",
 				pi, pf, speed,
-				Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
+				Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 # warning-ignore:return_value_discarded
 			tween.start()
 	pass

@@ -11,8 +11,8 @@ class_name PieceManager
 
 # All possible colors of pieces
 export(Array, Color) var pieceColors
-export (float, 0.1, 5) var pieceMoveSpeed = 1
-
+export (float, 0.1, 5) var pieceMoveSpeed = 0.5
+export (float, 0, 3) var pieceMoveRandomization = 0.3
 
 var piecesToMove = []
 var pieces = []
@@ -34,7 +34,8 @@ func movePieces(pit:Pit):
 func updatePiecePositions():
 	for p in piecesToMove:
 		if p is Piece:
-			(p as Piece).animateMovement(-self.global_position, pieceMoveSpeed)
+			var speed:float = pieceMoveSpeed + randf() * pieceMoveRandomization
+			(p as Piece).animateMovement(-self.global_position, speed)
 	piecesToMove.clear()
 	pass
 
