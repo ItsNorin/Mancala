@@ -7,16 +7,17 @@
 [node name="Board" type="Node2D"]
 position = Vector2( 512, 300 )
 script = ExtResource( 1 )
-startingPieces = 5
-pitRadius = 22.0
+sideCount = 2
 pieceScale = 0.4
 pitPileScalar = 0.45
+desiredSize = 500.0
 
 [node name="CircleLayout" type="Node2D" parent="."]
+rotation = 1.5708
 script = ExtResource( 2 )
-radius = 219.111
+update = false
+radius = 35.7155
 
 [node name="PieceManager" type="Node2D" parent="."]
 script = ExtResource( 3 )
 pieceColors = [ Color( 0.0941176, 0.137255, 0.768627, 1 ), Color( 0.662745, 0.0745098, 0.0745098, 1 ), Color( 0.227451, 0.627451, 0.145098, 1 ), Color( 0.666667, 0.054902, 0.686275, 1 ), Color( 0.827451, 0.47451, 0.0627451, 1 ), Color( 0.878431, 0.796078, 0.109804, 1 ) ]
-pieceMoveSpeed = 1.0

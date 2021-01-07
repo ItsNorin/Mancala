@@ -14,7 +14,6 @@ export (float, 0.1, 1) var pileRadiusScalar = 0.5 setget setPileRadiusScalar
 
 var layout:SunflowerSeedLayout
 
-
 func addPiece(p:Piece):
 	layout.add_child(p)
 	pass
@@ -48,16 +47,21 @@ func setPileRadiusScalar(s:float):
 	layout.setRadius(radius * s)
 	pass
 	
-	
-	
 func _init():
 	layout = SunflowerSeedLayout.new()
-	setPileRadiusScalar(pileRadiusScalar)
 	add_child(layout)
 	pass
 	
 func _ready():
 	_setTextureRadius(radius)
+	pass
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.pressed:
+			if event.global_position.distance_to(self.global_position) <= radius:
+				print("Mouse Click at: ", self.global_position)
+				get_tree().set_input_as_handled()
 	pass
 	
 func _exit_tree():
