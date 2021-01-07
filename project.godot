@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Piece",
 "language": "GDScript",
-"path": "res://Scripts/Piece/Piece.gd"
+"path": "res://Scripts/Board/Piece/Piece.gd"
 }, {
 "base": "Node2D",
 "class": "PieceManager",
@@ -42,12 +42,12 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "PieceVisible",
 "language": "GDScript",
-"path": "res://Scripts/Piece/PieceVisible.gd"
+"path": "res://Scripts/Board/Piece/PieceVisible.gd"
 }, {
 "base": "Node2D",
 "class": "Pit",
 "language": "GDScript",
-"path": "res://Scripts/Board/Pit/Pit.gd"
+"path": "res://Scripts/Board/PlayerRow/Pit/Pit.gd"
 }, {
 "base": "Node2D",
 "class": "PlayerRow",
